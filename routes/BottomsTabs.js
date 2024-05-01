@@ -4,7 +4,8 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Panier from '../pages/Panier'
 import Services from '../pages/Services'
 import Prestataire from '../pages/Prestataires'
-
+import Icon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 const BottomsTabs = () => {
     const Tab = createMaterialBottomTabNavigator()
   return (
