@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 
-const MapScreen = () => {
+const Maps = () => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
@@ -59,7 +59,12 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
+    width:375,
+    height:100,
+    marginLeft:5,
+    marginTop:50,
+    marginBottom:50
   },
 });
 
-export default MapScreen;
+export default Maps;

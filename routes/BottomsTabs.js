@@ -3,6 +3,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Panier from '../pages/Panier';
 import Services from '../pages/Services';
 import Prestataire from '../pages/Prestataires';
+import Tests from '../pages/Tests';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -63,6 +64,19 @@ const BottomsTabs = () => {
                     ),
                 }}
             />
+            {/* <Tab.Screen
+                name='Tests'
+                component={Tests}
+                options={{
+                    tabBarIcon: () => (
+                        <Icon
+                            name="shopping-cart"
+                            color="#7A4D09"
+                            size={26}
+                        />
+                    ),
+                }}
+            /> */}
         </Tab.Navigator>
     );
 }

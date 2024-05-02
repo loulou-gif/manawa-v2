@@ -32,11 +32,14 @@ const [searchPhrase, setSearchPhrase] = useState("");
     const filteredStore = searchPhrase ? filterData(Store, searchPhrase) : Store;
 
   return (
-    <ScrollView>
-      <Header/>
-      <SearchBar searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase} onChangeText={handleSearch} />
-      <Prest navigation={navigation} store={filteredStore}/>
-    </ScrollView>
+    <View>
+      
+      <ScrollView>
+        <Header/>
+        <SearchBar searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase} onChangeText={handleSearch} />
+        <Prest navigation={navigation} store={filteredStore}/>
+      </ScrollView>
+    </View>
   );
 };
 

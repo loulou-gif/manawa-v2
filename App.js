@@ -11,7 +11,34 @@ import Account from './pages/Account';
 import Prestataire from './pages/Prestataires';
 import Panier from './pages/Panier';
 import BottomsTabs from './routes/BottomsTabs';
+import * as Location from 'expo-location';
+import React, { useState, useEffect } from 'react';
+import Aperçu from './pages/Aperçu';
+import Avis from './pages/Avis';
 export default function App() {
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
   const Stack = createNativeStackNavigator()
   return (
     <NavigationContainer>
@@ -22,9 +49,9 @@ export default function App() {
         <Stack.Screen name='Otpcode' component={Otpcode} />
         {/* <Stack.Screen name='Services' component={Services} /> */}
         <Stack.Screen name='Account' component={Account} />
-        {/* <Stack.Screen name='Prestataires' component={Prestataire} /> */}
-        {/* <Stack.Screen name='Panier' component={Panier} /> */}
-        <Stack.Screen name='Tests' component={Tests} />
+        <Stack.Screen name='Aperçu' component={Aperçu} />
+        <Stack.Screen name='Avis' component={Avis} />
+        {/* <Stack.Screen name='Tests' component={Tests} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

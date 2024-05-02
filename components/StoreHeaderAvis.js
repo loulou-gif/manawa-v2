@@ -1,7 +1,8 @@
 import { View, Text, Image, StyleSheet } from 'react-native'
 import React from 'react'
+import IconeFontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
-const StoreHeader = ({navigation}) => {
+const StoreHeaderAvis = ({navigation}) => {
   return (
     <View>
       <Image style={styles.image} source={require("../assets/images/servicesBackgrounds/babershop.jpg")}/>
@@ -11,12 +12,16 @@ const StoreHeader = ({navigation}) => {
             <View styles={styles.text}>
                 <Text style={styles.title}>Salon de coiffure</Text>
                 <Text style={styles.state}>Ouvert (09:00 - 20:30)</Text>
+                {/* <View style={styles.points}>
+                    <IconeFontAwesome5 name='user-edit' onPress={() => navigation.navigate('ModifyStore')} size={16}/>
+                </View> */}
             </View>
+            
         </View>
         <View style={styles.flex} >
-            <Text style={styles.cursor} onPress={() => navigation.navigate('Account')} >Services</Text>
+            <Text style={styles.menu} onPress={() => navigation.navigate('Account')} >Service</Text>
             <Text style={styles.menu} onPress={() => navigation.navigate('Aperçu')}>Aperçu</Text>
-            <Text style={styles.menu} onPress={() => navigation.navigate('Avis')}>Avis</Text>
+            <Text style={styles.cursor} onPress={() => navigation.navigate('Avis')}>Avis</Text>
         </View>
       </View>
     </View>
@@ -53,14 +58,28 @@ const styles = StyleSheet.create({
     menu:{
         fontSize:16,
     },
-    menuMain:{
-        fontSize:16,
-        color:"#DE9F42"
-    },
     cursor:{
         fontSize:16,
         color:"#DE9F42",
+    },
+    icone:{
+        marginTop:100,
+        backgroundColor:'red',
+        borderWidth:1,
+        borderColor:'red'
+    },
+    points:{
+        flexDirection:'row',
+        // borderColor:'#ABA9A9',
+        // borderWidth:1,
+        // marginTop:5,
+        padding:5,
+        borderRadius:8,
+        // alignContent:'space-between',
+        // // width:100,
+        // justifyContent:'space-between',
+        // height:30
     }
 })
 
-export default StoreHeader
+export default StoreHeaderAvis

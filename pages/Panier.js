@@ -7,6 +7,7 @@ import IconeAntDesign from 'react-native-vector-icons/AntDesign';
 import IconeFontAwesome from 'react-native-vector-icons/FontAwesome';
 import { DataTable } from 'react-native-paper';
 import InfoStoreBare from '../components/InfoStoreBar';
+import Maps from '../components/Maps';
 
 
 const Panier = () => {
@@ -27,8 +28,8 @@ const Panier = () => {
                 <View style={styles.container}>
                     {Paniers.map((data) => (
                         <View style={styles.box} key={data.id}>
-                            <Icone key={data.id} name='dots-three-horizontal' onPress={() => handleInfoFacture(data)} size={16} color="black" style={{ textAlign: "right", width: 150, marginTop: -5, marginRight: -5 }} />
                             <View style={styles.state}><Text style={styles.text_state}>Booking</Text></View>
+                            <Icone key={data.id} name='dots-three-horizontal' onPress={() => handleInfoFacture(data)} size={16} color="black" style={{ textAlign: "right", width: 150, marginTop: -25, marginRight: -5 }} />
                             <View style={styles.buttonsContainer}>
                                 <Image style={styles.images} source={data.image} />
                             </View>
@@ -87,7 +88,7 @@ const Panier = () => {
                                             </DataTable.Row>
                                         </DataTable>
                                         <View style={styles.map}>
-                                        <Image style={styles.map} source={require('../assets/images/maps/map.png')} />
+                                        <Maps/>
                                         </View>
                                         <View style={styles.buttonsContainer_info_model}>
                                             <Pressable style={styles.btn_annulation} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Annuler la course</Text></Pressable>
@@ -112,7 +113,7 @@ const Panier = () => {
                                     <View style={styles.model}>
                                         <Text>Voulez-vous annuler la course?</Text>
                                         <View style={styles.buttonsContainer}>
-                                            <Pressable style={styles.btn_annulation} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Non </Text></Pressable>
+                                            <Pressable style={styles.btn_annulation2} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Non </Text></Pressable>
                                             <Pressable style={styles.btn_confirmation} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Oui </Text></Pressable>
                                         </View>
                                     </View>
@@ -168,6 +169,14 @@ const styles = StyleSheet.create({
     btn_annulation: {
         backgroundColor: '#FFA012',
         width: 150,
+        height: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 5
+    },
+    btn_annulation2: {
+        backgroundColor: '#FFA012',
+        width: 75,
         height: 30,
         alignItems: 'center',
         justifyContent: 'center',
@@ -302,7 +311,7 @@ const styles = StyleSheet.create({
     state:{
       textAlign:'left',
       width:170,
-      marginTop:-20
+      marginTop:-10
     },
     text_state:{
       textAlign:'left',

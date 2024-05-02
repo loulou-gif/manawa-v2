@@ -21,9 +21,10 @@ const Account = ({route, navigation}) => {
     setShowPicker(true)
   }
   return (
-    <ScrollView>
+    <View>  
       <Header/>
-      <StoreHeader />
+      <ScrollView>
+      <StoreHeader navigation={navigation}/>
       {FilterData.map((data)=> (
         <View key={data.id} style={styles.Card} >
           <Image style={styles.image} source={data.image}/>
@@ -46,13 +47,14 @@ const Account = ({route, navigation}) => {
                 is24Hour={true}
                 display="default"
                 onChange={onChange}
-                style={{backgroundColor: "#47300D", color:'white'}}
+                style={styles.dateTimePicker}
               />
             )}
           </View>
         </View>
       ))}
-    </ScrollView>
+      </ScrollView>
+    </View>
   )
 }
 
@@ -109,7 +111,15 @@ const styles = StyleSheet.create({
   },
   space:{
     justifyContent:"space-evenly",
-  }
+  },
+  dateTimePicker: {
+    backgroundColor: 'white',
+    borderRadius: 5,
+    borderColor: '#C5C5C5',
+    borderWidth: 1,
+    marginVertical: 10,
+    height: 43,
+   },
 })
 
 export default Account
