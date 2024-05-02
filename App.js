@@ -16,13 +16,13 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Services' screenOptions={{headerShown:false}}>
-        <Stack.Screen name='Tabs' component={BottomsTabs} />
+        <Stack.Screen name='tabs' component={BottomsTabs} />
         <Stack.Screen name='Start' component={Start} />
         <Stack.Screen name='Signup' component={Signup}/>
         <Stack.Screen name='Otpcode' component={Otpcode} />
-        <Stack.Screen name='Services' component={Services} />
+        {/* <Stack.Screen name='Services' component={Services} /> */}
         <Stack.Screen name='Account' component={Account} />
-        <Stack.Screen name='Prestataires' component={Prestataire} />
+        {/* <Stack.Screen name='Prestataires' component={Prestataire} /> */}
         {/* <Stack.Screen name='Panier' component={Panier} /> */}
         <Stack.Screen name='Tests' component={Tests} />
       </Stack.Navigator>
