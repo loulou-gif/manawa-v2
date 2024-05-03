@@ -20,7 +20,7 @@ const BottomsTabs = () => {
             activeColor="#fff"
             inactiveColor="#7A4D09"
             barStyle={{
-                backgroundColor: '#AB6E12',
+                backgroundColor: '#DF972A',
                 height: 80,
                 borderTopEndRadius: 50
             }}
