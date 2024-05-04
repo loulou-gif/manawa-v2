@@ -1,18 +1,20 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Panier from '../pages/Panier';
 import Services from '../pages/Services';
 import Prestataire from '../pages/Prestataires';
 import Tests from '../pages/Tests';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Parametres from '../pages/Parametres';
 
 const BottomsTabs = () => {
     const Tab = createMaterialBottomTabNavigator();
 
     return (
         <Tab.Navigator
-            initialRouteName='Services'
+            initialRouteName='Service'
             screenOptions={{
                 headerShown: false
             }}
@@ -31,7 +33,7 @@ const BottomsTabs = () => {
                 options={{
                     tabBarIcon: () => (
                         <MaterialCommunityIcons
-                            name='room-service'
+                            name='room-service-outline'
                             color="#7A4D09"
                             size={26}
                         />
@@ -43,8 +45,8 @@ const BottomsTabs = () => {
                 component={Services}
                 options={{
                     tabBarIcon: () => (
-                        <Icon
-                            name="wrench"
+                        <MaterialCommunityIcons
+                            name="tools"
                             color="#7A4D09"
                             size={26}
                         />
@@ -64,19 +66,19 @@ const BottomsTabs = () => {
                     ),
                 }}
             />
-            {/* <Tab.Screen
-                name='Tests'
-                component={Tests}
+            <Tab.Screen
+                name='Parametres'
+                component={Parametres}
                 options={{
                     tabBarIcon: () => (
-                        <Icon
-                            name="shopping-cart"
+                        <MaterialCommunityIcons
+                            name="account"
                             color="#7A4D09"
                             size={26}
                         />
                     ),
                 }}
-            /> */}
+            />
         </Tab.Navigator>
     );
 }

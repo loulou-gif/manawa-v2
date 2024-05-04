@@ -28,7 +28,7 @@ const Panier = () => {
                 <View style={styles.container}>
                     {Paniers.map((data) => (
                         <View style={styles.box} key={data.id}>
-                            <View style={styles.state}><Text style={styles.text_state}>Booking</Text></View>
+                            <View style={styles.state}><Text style={styles.text_state}>Pending</Text></View>
                             <Icone key={data.id} name='dots-three-horizontal' onPress={() => handleInfoFacture(data)} size={16} color="black" style={{ textAlign: "right", width: 150, marginTop: -25, marginRight: -5 }} />
                             <View style={styles.buttonsContainer}>
                                 <Image style={styles.images} source={data.image} />
@@ -311,15 +311,18 @@ const styles = StyleSheet.create({
     state:{
       textAlign:'left',
       width:170,
-      marginTop:-10
+      marginTop:-10,
     },
     text_state:{
       textAlign:'left',
       padding:5,
-      width:80,
+      width:"40%",
       color:'#fff',
-      backgroundColor:'green',
-      fontSize:15
+      backgroundColor:'#FE9901',
+      fontSize:12,
+      borderRadius:8,
+      height:28,
+      textAlign:"center"
     }
 });
 
