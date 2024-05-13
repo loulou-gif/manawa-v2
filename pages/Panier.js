@@ -22,8 +22,8 @@ const Panier = () => {
     }
     return (
         <View>
+            <Header />
             <ScrollView>
-                <Header />
                 <InfoStoreBare />
                 <View style={styles.container}>
                     {Paniers.map((data) => (
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 20,
+        marginTop: 10,
     },
     box: {
         width: '45%',

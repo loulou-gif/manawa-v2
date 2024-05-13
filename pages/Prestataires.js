@@ -32,11 +32,10 @@ const [searchPhrase, setSearchPhrase] = useState("");
     const filteredStore = searchPhrase ? filterData(Store, searchPhrase) : Store;
 
   return (
-    <View>
-      
-      <ScrollView>
-        <Header/>
-        <SearchBar searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase} onChangeText={handleSearch} />
+    <View style={styles.container}>
+    <Header/>
+    <SearchBar searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase} onChangeText={handleSearch} />
+      <ScrollView >
         <Prest navigation={navigation} store={filteredStore}/>
       </ScrollView>
     </View>
@@ -45,7 +44,7 @@ const [searchPhrase, setSearchPhrase] = useState("");
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    flex:1
   },
   item: {
     flexDirection: 'row',
@@ -71,6 +70,11 @@ const styles = StyleSheet.create({
     color: '#ABA9A9',
     width: 250,
   },
+  
+  prestContainer: {
+    marginTop: 20,
+    paddingHorizontal: 20,
+},
 });
 
 export default Prestataire;

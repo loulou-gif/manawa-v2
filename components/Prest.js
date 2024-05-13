@@ -4,7 +4,7 @@ import { Store } from '../data/Store.js';
 
 const Prest = ({navigation, store}) => {
   return (
-    <ScrollView style={styles.all}>
+    <View style={styles.all}>
      <View style={styles.container}>
         {store.map((data) => ( 
           <Pressable key={data.id} onPress={() => navigation.push('Account', {id: data.id})}>
@@ -19,7 +19,7 @@ const Prest = ({navigation, store}) => {
           </Pressable>
         ))}
       </View>
-    </ScrollView>
+    </View>
   )
 }
 const styles = StyleSheet.create({

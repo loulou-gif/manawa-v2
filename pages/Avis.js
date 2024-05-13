@@ -12,7 +12,7 @@ const Avis = ({navigation}) => {
   }));
   return (
     <View>
-      <Header/>
+      {/* <Header/> */}
       <StoreHeaderAvis navigation={navigation}/>
       {avisWithAlias.map((data) => (
         <View key={data.id} style={styles.card}>

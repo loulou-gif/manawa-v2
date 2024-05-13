@@ -22,7 +22,7 @@ const Accounts = ({route, navigation}) => {
   }
   return (
     <View>  
-      <Header/>
+      {/* <Header/> */}
       <ScrollView>
       <StoreHeader navigation={navigation}/>
       {FilterData.map((data)=> (

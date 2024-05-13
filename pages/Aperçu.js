@@ -20,7 +20,7 @@ const Aperçu = ({navigation}) => {
   return (
     <ScrollView>
         <View>
-            <Header/>
+            {/* <Header/> */}
             <StoreHeaderAperçu navigation={navigation}/>
             <View>
                 <View style={styles.center}>
