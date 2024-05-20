@@ -1,14 +1,17 @@
 import { View, Text, StyleSheet , ScrollView, Pressable, Image } from 'react-native'
 import React from 'react'
 import { Store } from '../data/Store.js';
+// import { services } from '../data/services.js';
 
 
 
-const Prest = ({navigation, store}) => {
+const FiltrePrest = ({navigation, route}) => {
+    const { id } = route.params;
+    const FilterData = Store.filter((data) => data.id_the === id);
   return (
     <View style={styles.all}>
      <View style={styles.container}>
-        {store.map((data) => ( 
+        {FilterData.map((data) => ( 
           <Pressable key={data.id} onPress={() => navigation.push('Account', {id: data.id})}>
             <View style={styles.item}> 
               <Image style={styles.image} source={data.profil}/>
@@ -57,4 +60,4 @@ const styles = StyleSheet.create({
     },
   });
 
-export default Prest
+export default FiltrePrest

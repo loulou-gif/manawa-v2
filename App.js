@@ -15,6 +15,7 @@ import * as Location from 'expo-location';
 import React, { useState, useEffect } from 'react';
 import Aperçu from './pages/Aperçu';
 import Avis from './pages/Avis';
+import FiltreService from './pages/FiltreService';
 export default function App() {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -51,7 +52,7 @@ export default function App() {
         <Stack.Screen name='Account' component={Account} />
         <Stack.Screen name='Aperçu' component={Aperçu} />
         <Stack.Screen name='Avis' component={Avis} />
-        {/* <Stack.Screen name='Tests' component={Tests} /> */}
+        <Stack.Screen name='FiltreService' component={FiltreService} />
       </Stack.Navigator>
     </NavigationContainer>
   );

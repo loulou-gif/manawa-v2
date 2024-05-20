@@ -32,19 +32,19 @@ export const services = [
     {
         id:6,
         image:require("../assets/images/servicesBackgrounds/deco.jpg"),
-        name:"Make Up", 
+        name:"Décoration", 
  
     },
     {
         id:7,
         image:require("../assets/images/servicesBackgrounds/menuisier.jpg"),
-        name:"Make Up", 
+        name:"Menuisierie", 
  
     },
     {
         id:8,
         image:require("../assets/images/servicesBackgrounds/babershop.jpg"),
-        name:"Make Up", 
+        name:"Coiffure", 
  
     },
     {

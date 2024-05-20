@@ -7,6 +7,8 @@ const Carrousel = ({ navigation, services }) => {
     const pagerRef = useRef(null);
     const [visiblePages, setVisiblePages] = useState([0, 1, 2]); // Index des pages visibles
 
+    // const FilterData = services
+
     // Défilement automatique du carrousel
     useEffect(() => {
         const interval = setInterval(() => {
@@ -35,9 +37,9 @@ const Carrousel = ({ navigation, services }) => {
                 setCurrentPage(event.nativeEvent.position);
                 updateVisiblePages(event.nativeEvent.position);
             }}>
-                {services.map((data, index) => (
+                {services.map((data) => (
                     <View key={data.id} style={styles.page}>
-                        <Pressable onPress={() => navigation.navigate('Prestataires', { id: data.id })}>
+                        <Pressable onPress={() => navigation.navigate('FiltreService', { id: data.id })}>
                             <ImageBackground style={styles.Card} source={data.image}>
                                 <View style={styles.titleBox}>
                                     <Text style={styles.title}>{data.name}</Text>
