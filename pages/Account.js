@@ -8,101 +8,118 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { TextInput } from 'react-native-paper'
 import IconeFontisto from 'react-native-vector-icons/Fontisto'
 import IconeIonicons from 'react-native-vector-icons/Ionicons'
-const Account = ({route, navigation}) => {
-  const [date, setDate] = useState(new Date())
-  const [mode, setMode] = useState()
-  const [showPicker, setShowPicker] = useState(false)
-  const [details, setDetails] = useState(false)
-  const {id} = route.params;
-  FilterData = product.filter((data) => data.id_store === id)
+const Account = ({ route, navigation }) => {
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState();
+  const [showPicker, setShowPicker] = useState(false);
+  const [details, setDetails] = useState(false);
+  const [formattedDate, setFormattedDate] = useState('--/--/----');
+  const [formattedTime, setFormattedTime] = useState('--:--');
 
-  const handleVisible= () =>{
-    setDetails(!details)
-  }
+  const { id } = route.params;
+  const FilterData = product.filter((data) => data.id_store === id);
 
-  const onChange = (event, updateDate) =>{
-    const currentDate = updateDate || date;
-    setShowPicker(false),
-    setDate(currentDate)
-  }
+  const handleVisible = () => {
+    setDetails(!details);
+    // setDate('')
+  };
 
-  const dateShower =()=>{
-    setMode('date')
-    setShowPicker(true)
-  }
-  const timeShower =()=>{
-    setMode('time')
-    setShowPicker(true)
-  }
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShowPicker(false);
+    setDate(currentDate);
 
-  // const showDataPicker =()=>{
-  //   setShowPicker(true)
-  // }
+    if (mode === 'date') {
+      const formattedDate = currentDate.toLocaleDateString();
+      setFormattedDate(formattedDate);
+    } else if (mode === 'time') {
+      const hours = currentDate.getHours().toString().padStart(2, '0');
+      const minutes = currentDate.getMinutes().toString().padStart(2, '0');
+      const formattedTime = `${hours}:${minutes}`;
+      setFormattedTime(formattedTime);
+    }
+  };
+
+  const dateShower = () => {
+    setMode('date');
+    setShowPicker(true);
+  };
+
+  const timeShower = () => {
+    setMode('time');
+    setShowPicker(true);
+  };
+
   return (
-    <View>  
-      {/* <Header/> */}
+    <View>
       <ScrollView>
-      <StoreHeader navigation={navigation}/>
-      {FilterData.map((data)=> (
-        <View key={data.id} style={styles.Card} >
-          <Image style={styles.image} source={data.image}/>
-          <View style={styles.flex} >
-            <View >
-              <Text style={styles.title}>{data.name} </Text>
-              <Text style={styles.text}>{data.description}</Text>
-            </View>
-            <View style={styles.space} >
-              <Text  style={styles.price}>{data.price}</Text>
-              <Pressable style={styles.bouton} onPress={handleVisible}>
-                <Text style={styles.value} >Réserver</Text>
-              </Pressable>
-            </View>
-            <Modal animationType='fade' transparent={true} visible={details}>
-               {details &&
+        <StoreHeader navigation={navigation} />
+        {FilterData.map((data) => (
+          <View key={data.id} style={styles.Card}>
+            <Image style={styles.image} source={data.image} />
+            <View style={styles.flex}>
+              <View>
+                <Text style={styles.title}>{data.name}</Text>
+                <Text style={styles.text}>{data.description}</Text>
+              </View>
+              <View style={styles.space}>
+                <Text style={styles.price}>{data.price}</Text>
+                <Pressable style={styles.bouton} onPress={handleVisible}>
+                  <Text style={styles.value}>Réserver</Text>
+                </Pressable>
+              </View>
+              <Modal animationType='fade' transparent={true} visible={details}>
+                {details && (
                   <View style={styles.background}>
                     <View style={styles.box}>
-                        <Text style={styles.titre}>Réservation</Text>
-                        <View style={styles.all_input}>
-                          <View style={styles.input} ><Text>{details.name}</Text></View>
-                          <View style={styles.input} ><Text>{details.description}</Text></View>
-                          <View style={styles.input} ><Text>{details.price}</Text></View>
-                          <View style={styles.date}>  
-                            <Pressable style={styles.inputs} onPress={dateShower} ><Text style={styles.day}><IconeFontisto name='date' size={16} /> 11/11/2111</Text></Pressable>
-                            <Pressable style={styles.inputs} onPress={timeShower} ><Text style={styles.day}><IconeIonicons name='time-outline' size={16} style={{marginTop:50}}/> 11:11</Text></Pressable>
-                          </View>
-                          {/* <TextInput style={styles.input} value={date} onPressIn={showDataPicker}/> */}
-                          {/* <TextInput value={}/> */}
-                        </View>
-                        <View style={styles.bouttons}>
-                          <Pressable style={styles.btn_cancel} onPress={handleVisible}>
-                            <Text style={styles.text_btn}>Retour</Text>
-                          </Pressable >
-                          <Pressable style={styles.btn_valid} onPress={handleVisible}>
-                            <Text style={styles.text_btn}>Valider</Text>
+                      <Text style={styles.titre}>Réservation</Text>
+                      <View style={styles.all_input}>
+                        <TextInput disabled={true} style={styles.input}><Text style={styles.details}>{data.name}</Text></TextInput>
+                        <TextInput disabled={true} style={styles.input}><Text style={styles.details}>{data.description}</Text></TextInput>
+                        <TextInput disabled={true} style={styles.input}><Text style={styles.details}>{data.price}</Text></TextInput>
+                        <View style={styles.date}>
+                          <Pressable  style={styles.inputs} onPress={dateShower}>
+                            <TextInput disabled={true}  style={styles.last}><Text style={styles.day}>
+                              <IconeFontisto name='date' size={16} /> {formattedDate}</Text>
+                            </TextInput>
+                          </Pressable>
+                          <Pressable style={styles.inputs} onPress={timeShower}>
+                            <TextInput disabled={true}  style={styles.last}>
+                              <Text style={styles.day}><IconeIonicons name='time-outline' size={14} /> {formattedTime}</Text>
+                            </TextInput>
                           </Pressable>
                         </View>
+                      </View>
+                      <View style={styles.bouttons}>
+                        <Pressable style={styles.btn_cancel} onPress={handleVisible}>
+                          <Text style={styles.text_btn}>Retour</Text>
+                        </Pressable>
+                        <Pressable style={styles.btn_valid} onPress={handleVisible}>
+                          <Text style={styles.text_btn}>Valider</Text>
+                        </Pressable>
+                      </View>
                     </View>
                   </View>
-                }
-            </Modal>
-            {showPicker && (
-              <DateTimePicker
-                testID="dateTimePicker"
-                value={date}
-                mode={mode}
-                is24Hour={true}
-                display="default"
-                onChange={onChange}
-                style={styles.dateTimePicker}
-              />
-            )}
+                )}
+              </Modal>
+              {showPicker && (
+                <DateTimePicker
+                  testID="dateTimePicker"
+                  value={date}
+                  mode={mode}
+                  is24Hour={true}
+                  display="default"
+                  onChange={onChange}
+                  style={styles.dateTimePicker}
+                />
+              )}
+            </View>
           </View>
-        </View>
-      ))}
+        ))}
       </ScrollView>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   Card:{
@@ -182,7 +199,8 @@ const styles = StyleSheet.create({
    titre:{
     textAlign:'center',
     fontSize:25,
-    marginTop:15
+    marginTop:15,
+    color:'#47300D'
    },
    all_input:{
     width:'80%',
@@ -201,6 +219,14 @@ const styles = StyleSheet.create({
     height:40,
     borderColor:"#D9D9D9",
     marginTop:10,
+    borderRadius:10
+   },
+   last:{
+    // borderWidth:1,
+    backgroundColor:'#fff',
+    height:40,
+    borderColor:"#D9D9D9",
+    // marginTop:10,
     borderRadius:10
    },
    inputs:{
@@ -239,8 +265,13 @@ const styles = StyleSheet.create({
     alignContent:'center',
     textAlign:'center',
     marginTop:10,
-    color:'#ABA9A9',
+    color:'#47300D',
     width:'100%',
+   },
+   details:{
+    marginTop:10,
+    marginLeft:10,
+    color:'#47300D'
    }
 })
 
