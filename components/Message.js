@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         marginTop: -80,
     },
     circle: {
-        backgroundColor: '#47300D',
+        backgroundColor: '#7A4D09',
         width: 60,
         height: 60,
         borderRadius: 30,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     header: {
         width: '100%',
         height: 50,
-        backgroundColor: '#47300D',
+        backgroundColor: '#7A4D09',
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 10,
