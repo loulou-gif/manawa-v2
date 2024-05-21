@@ -7,7 +7,7 @@ const Sms = () => {
     <View>
       {sms.map((d) =>(
         <TouchableOpacity key={d.id} style={styles.card}>
-            <Image style={styles.image} ></Image>
+            <Image style={styles.image} source={d.pp} ></Image>
             <View style={styles.info}>
                 <Text style={styles.name}>{d.name}</Text>
                 <Text style={styles.message}>{d.text}</Text>
@@ -21,7 +21,7 @@ const Sms = () => {
 const styles = StyleSheet.create({
     card:{
         borderColor:'#ABA9A9',
-        borderWidth:1,
+        borderBottomWidth:1,
         flexDirection:'row',
         height:80,
         alignItems:'center'
