@@ -24,8 +24,8 @@ const Message = ({navigation}) => {
                     <View style={styles.all_conversation}>
                         <View style={styles.header}>
                             <TouchableOpacity onPress={handleVisible}>
-                                <Text style={styles.text_header}>
-                                    <IconeIonicons name="arrow-back" size={20} />
+                                <Text style={styles.back_header}>
+                                    <IconeIonicons name="arrow-back" size={26} />
                                 </Text>
                             </TouchableOpacity>
                             <Text style={styles.text_header}>Conversations</Text>
@@ -76,6 +76,12 @@ const styles = StyleSheet.create({
     conversations: {
         flex: 1,
         // Your conversation styles here
+    },
+    back_header: {
+        color: 'white',
+        fontSize: 20,
+        marginLeft:10,
+        marginRight:20,
     },
     text_header: {
         color: 'white',
