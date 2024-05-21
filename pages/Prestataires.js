@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import { Store } from '../data/Store.js';
 import Prest from '../components/Prest.js';
+import Message from '../components/Message.js';
 
 
 const Prestataire = ({navigation}) => {
@@ -38,6 +39,7 @@ const [searchPhrase, setSearchPhrase] = useState("");
       <ScrollView >
         <Prest navigation={navigation} store={filteredStore}/>
       </ScrollView>
+      <Message navigation={navigation}/>
     </View>
   );
 };

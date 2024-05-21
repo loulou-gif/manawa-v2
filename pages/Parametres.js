@@ -7,6 +7,7 @@ import IconeFontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import IconeMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import IconeEntypo from 'react-native-vector-icons/Entypo'
 import IconeAntDesign from 'react-native-vector-icons/AntDesign'
+import Message from '../components/Message'
 
 const Parametres = ({navigation}) => {
   return (
@@ -45,6 +46,7 @@ const Parametres = ({navigation}) => {
           <Text style={styles.options}><IconeMaterialCommunityIcons name='logout' size={24}/> <Text style={styles.icone} > Déconnexion</Text></Text>
         </View>
       </View>
+      {/* <Message navigation={navigation}/> */}
     </View>
   )
 }

@@ -8,9 +8,10 @@ import IconeFontAwesome from 'react-native-vector-icons/FontAwesome';
 import { DataTable } from 'react-native-paper';
 import InfoStoreBare from '../components/InfoStoreBar';
 import Maps from '../components/Maps';
+import Message from '../components/Message';
 
 
-const Panier = () => {
+const Panier = ({navigation}) => {
     const [modalVisible, setModalVisible] = useState(false); 
     const [ confirm, setConfirm] = useState(false);
     const [ annul, setAnnul] = useState(false);
@@ -122,6 +123,7 @@ const Panier = () => {
                         </View>
                     ))}
                 </View>
+            {/* <Message navigation={navigation}/> */}
             </ScrollView>
         </View>
     )

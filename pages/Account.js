@@ -8,6 +8,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { TextInput } from 'react-native-paper'
 import IconeFontisto from 'react-native-vector-icons/Fontisto'
 import IconeIonicons from 'react-native-vector-icons/Ionicons'
+import Message from '../components/Message'
 const Account = ({ route, navigation }) => {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState();
@@ -117,6 +118,7 @@ const Account = ({ route, navigation }) => {
           </View>
         ))}
       </ScrollView>
+      {/* <Message navigation={navigation}/> */}
     </View>
   );
 };

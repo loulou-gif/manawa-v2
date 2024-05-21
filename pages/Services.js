@@ -6,6 +6,7 @@ import { services } from '../data/services';
 import Carrousel from '../components/Carrousel';
 import Prest from '../components/Prest';
 import { Store } from '../data/Store';
+import Message from '../components/Message';
 
 const Services = ({ navigation }) => {
     const [searchPhrase, setSearchPhrase] = useState("");
@@ -37,6 +38,7 @@ const Services = ({ navigation }) => {
             <ScrollView style={styles.prestContainer}>
                 <Prest navigation={navigation} store={filteredStore} />
             </ScrollView>
+            <Message navigation={navigation}/>
         </View>
     );
 }

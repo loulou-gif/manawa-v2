@@ -5,6 +5,7 @@ import  Header  from '../components/Header'
 import StoreHeader from '../components/StoreHeader'
 import { product } from '../data/Product'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import Message from '../components/Message'
 const Accounts = ({route, navigation}) => {
   const [date, setDate] = useState(new Date())
   const [showPicker, setShowPicker] = useState(false)
@@ -54,6 +55,7 @@ const Accounts = ({route, navigation}) => {
         </View>
       ))}
       </ScrollView>
+      <Message navigation={navigation}/>
     </View>
   )
 }

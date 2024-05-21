@@ -5,6 +5,7 @@ import SearchBar from '../components/SearchBar';
 import { Store } from '../data/Store.js';
 import Prest from '../components/Prest.js';
 import FiltrePrest from '../components/FiltrePrest.js';
+import Message from '../components/Message.js';
 
 
 const FiltreService = ({navigation, route}) => {
@@ -38,6 +39,7 @@ const [searchPhrase, setSearchPhrase] = useState("");
       <ScrollView >
         <FiltrePrest route={route} navigation={navigation} store={filteredStore}/>
       </ScrollView>
+      <Message navigation={navigation}/>
     </View>
   );
 };
