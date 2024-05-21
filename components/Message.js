@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Modal } from 'react-native-paper';
 import IconeMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconeIonicons from 'react-native-vector-icons/Ionicons';
+import Sms from './Sms';
 
-const Message = () => {
+const Message = ({navigation}) => {
     const [message, setMessage] = useState(false);
 
     const handleVisible = () => {
@@ -29,9 +30,9 @@ const Message = () => {
                             </TouchableOpacity>
                             <Text style={styles.text_header}>Conversations</Text>
                         </View>
-                        <View style={styles.conversations}>
-                            {/* Place your conversation components here */}
-                        </View>
+                        <ScrollView style={styles.conversations}>
+                            <Sms navigation={navigation}/>
+                        </ScrollView>
                     </View>
                 </View>
             </Modal>
@@ -57,8 +58,8 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     modal: {
-        height: 1350,
-        backgroundColor: 'rgba(0,0,0,0.3)',
+        height: 1450,
+        backgroundColor: 'rgba(0,0,0, 0.3)',
     },
     all_conversation: {
         backgroundColor: 'white',
