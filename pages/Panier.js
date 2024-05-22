@@ -1,4 +1,4 @@
-import { View, ScrollView, Text, StyleSheet, Image, Pressable, Modal } from 'react-native';
+import { View, ScrollView, Text, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native';
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import { Paniers } from '../data/Paniers';
@@ -41,14 +41,14 @@ const Panier = ({navigation}) => {
                                     <Text style={styles.text}><Text style={styles.bold}>Coût:</Text> {data.price}</Text>
                                 </View>
                                 <View style={styles.buttonsContainer}>
-                                    <Pressable style={styles.btn_annulation} onPress={() => setAnnul(true)}><Text style={styles.buttonText}>Annuler la course</Text></Pressable>
-                                    {/* <Pressable style={styles.btn_confirmation} onPress={() => setConfirm(true)}><Text style={styles.buttonText}>Confirmer</Text></Pressable> */}
+                                    <TouchableOpacity style={styles.btn_annulation} onPress={() => setAnnul(true)}><Text style={styles.buttonText}>Annuler la course</Text></TouchableOpacity>
+                                    {/* <TouchableOpacity style={styles.btn_confirmation} onPress={() => setConfirm(true)}><Text style={styles.buttonText}>Confirmer</Text></TouchableOpacity> */}
                                 </View>
                             </View>
                             <Modal animationType="fade" transparent={true} visible={modalVisible} onRequestClose={() => { Alert.alert('Modal has been closed.'); setModalVisible(!modalVisible); }}>
                                 <View style={styles.backgroundModal}>
                                     {selectedUserData && <View style={styles.model_info}>
-                                    <Pressable   onPress={() => setModalVisible(!modalVisible)}><Text style={{marginRight:10, marginTop:10, textAlign:'right'}}><IconeAntDesign name='closecircleo' size={26}/></Text></Pressable>
+                                    <TouchableOpacity   onPress={() => setModalVisible(!modalVisible)}><Text style={{marginRight:10, marginTop:10, textAlign:'right'}}><IconeAntDesign name='closecircleo' size={26}/></Text></TouchableOpacity>
                                     <View style={styles.box_info}>
                                         <View style={styles.circle}>
                                             <Text style={styles.circle_text}>JK</Text>
@@ -92,8 +92,8 @@ const Panier = ({navigation}) => {
                                         <Maps/>
                                         </View>
                                         <View style={styles.buttonsContainer_info_model}>
-                                            <Pressable style={styles.btn_annulation} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Annuler la course</Text></Pressable>
-                                            {/* <Pressable style={styles.btn_confirmation} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Oui </Text></Pressable> */}
+                                            <TouchableOpacity style={styles.btn_annulation} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Annuler la course</Text></TouchableOpacity>
+                                            {/* <TouchableOpacity style={styles.btn_confirmation} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Oui </Text></TouchableOpacity> */}
                                         </View>
                                     </View>}
                                 </View>
@@ -103,8 +103,8 @@ const Panier = ({navigation}) => {
                                     <View style={styles.model}>
                                         <Text>Voulez-vous prendre cette taches?</Text>
                                         <View style={styles.buttonsContainer}>
-                                            <Pressable style={styles.btn_annulation} onPress={() =>setConfirm(!confirm)}><Text style={styles.buttonText}>Non </Text></Pressable>
-                                            <Pressable style={styles.btn_confirmation} onPress={() =>setConfirm(!confirm)}><Text style={styles.buttonText}>Oui </Text></Pressable>
+                                            <TouchableOpacity style={styles.btn_annulation} onPress={() =>setConfirm(!confirm)}><Text style={styles.buttonText}>Non </Text></TouchableOpacity>
+                                            <TouchableOpacity style={styles.btn_confirmation} onPress={() =>setConfirm(!confirm)}><Text style={styles.buttonText}>Oui </Text></TouchableOpacity>
                                         </View>
                                     </View>
                                 </View>
@@ -114,8 +114,8 @@ const Panier = ({navigation}) => {
                                     <View style={styles.model}>
                                         <Text>Voulez-vous annuler la course?</Text>
                                         <View style={styles.buttonsContainer}>
-                                            <Pressable style={styles.btn_annulation2} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Non </Text></Pressable>
-                                            <Pressable style={styles.btn_confirmation} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Oui </Text></Pressable>
+                                            <TouchableOpacity style={styles.btn_annulation2} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Non </Text></TouchableOpacity>
+                                            <TouchableOpacity style={styles.btn_confirmation} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Oui </Text></TouchableOpacity>
                                         </View>
                                     </View>
                                </View>
