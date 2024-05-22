@@ -1,6 +1,7 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import React from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native';
+import React, { useState } from 'react';
 import { sms } from '../data/sms';
+import Conversation from './Conversation';
 
 // Fonction pour tronquer le texte
 const truncateText = (text, length) => {
@@ -8,10 +9,22 @@ const truncateText = (text, length) => {
 };
 
 const Sms = () => {
+  const [details, setDetails] = useState(false);
+  const [selectedConversation, setSelectedConversation] = useState(null);
+
+  const handleVisible = (conversation) => {
+    setSelectedConversation(conversation);
+    setDetails(!details);
+  };
+
   return (
     <View>
       {sms.map((d) => (
-        <TouchableOpacity key={d.id} style={styles.card}>
+        <TouchableOpacity 
+          key={d.id} 
+          style={styles.card} 
+          onPress={() => handleVisible(d)}
+        >
           <Image style={styles.image} source={d.pp} />
           <View style={styles.info}>
             <Text style={styles.name}>{d.name}</Text>
@@ -22,6 +35,14 @@ const Sms = () => {
           </View>
         </TouchableOpacity>
       ))}
+      
+      <Modal animationType="slide" transparent={true} visible={details}>
+        <View style={styles.modalContainer}>
+          {details && selectedConversation && (
+            <Conversation d={selectedConversation} onClose={handleVisible} />
+          )}
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -62,6 +83,12 @@ const styles = StyleSheet.create({
   },
   info: {
     flex: 1, // to take up the remaining space in the row
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
