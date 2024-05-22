@@ -4,8 +4,9 @@ import { Modal } from 'react-native-paper';
 import IconeMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconeIonicons from 'react-native-vector-icons/Ionicons';
 import Sms from './Sms';
+import { sms } from '../data/sms'; // Assurez-vous que cette importation est correcte
 
-const Message = ({navigation}) => {
+const Message = ({ navigation }) => {
     const [message, setMessage] = useState(false);
 
     const handleVisible = () => {
@@ -31,7 +32,13 @@ const Message = ({navigation}) => {
                             <Text style={styles.text_header}>Conversations</Text>
                         </View>
                         <ScrollView style={styles.conversations}>
-                            <Sms navigation={navigation}/>
+                            {sms.length === 0 ? (
+                                <Text style={styles.noConversations}>
+                                    Vous n'avez pas de discussion en cours
+                                </Text>
+                            ) : (
+                                <Sms navigation={navigation} />
+                            )}
                         </ScrollView>
                     </View>
                 </View>
@@ -75,17 +82,22 @@ const styles = StyleSheet.create({
     },
     conversations: {
         flex: 1,
-        // Your conversation styles here
     },
     back_header: {
         color: 'white',
         fontSize: 20,
-        marginLeft:10,
-        marginRight:20,
+        marginLeft: 10,
+        marginRight: 20,
     },
     text_header: {
         color: 'white',
         fontSize: 20,
+    },
+    noConversations: {
+        textAlign: 'center',
+        fontSize: 18,
+        color: '#7A4D09',
+        marginTop: 20,
     },
 });
 
