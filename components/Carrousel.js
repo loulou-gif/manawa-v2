@@ -39,7 +39,7 @@ const Carrousel = ({ navigation, services }) => {
             }}>
                 {services.map((data) => (
                     <View key={data.id} style={styles.page}>
-                        <Pressable onPress={() => navigation.navigate('FiltreService', { id: data.id })}>
+                        <Pressable onPress={() => navigation.navigate('Boutique', { id: data.id })}>
                             <ImageBackground style={styles.Card} source={data.image}>
                                 <View style={styles.titleBox}>
                                     <Text style={styles.title}>{data.name}</Text>

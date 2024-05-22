@@ -52,7 +52,7 @@ export default function App() {
         <Stack.Screen name='Account' component={Account} />
         <Stack.Screen name='Aperçu' component={Aperçu} />
         <Stack.Screen name='Avis' component={Avis} />
-        <Stack.Screen name='FiltreService' component={FiltreService} />
+        <Stack.Screen name='Boutique' component={FiltreService} />
       </Stack.Navigator>
     </NavigationContainer>
   );
