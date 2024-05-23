@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, ImageBackground, TextInput, Pressable, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import IndicatorSearch from '../components/indicatorSearch';
+import {app, analytics, auth, RecaptchaVerifier} from '../firebase/config.js'
 
 const Signup = ({navigation}) => {
   const image = require("../assets/images/background/second.png");
@@ -11,14 +12,14 @@ const Signup = ({navigation}) => {
   }
   return (
     <View style={{}}>
-      <ImageBackground source={image} style={{ width:"auto", height:900}} resizeMode="cover">
+      <ImageBackground source={image} style={{ width:"auto", height:'100%'}} resizeMode="cover">
         <View style={styles.display} >
           <View style={styles.header}>
             <Text onPress={() => navigation.navigate("Signup")} style={styles.inscriptionColor}>Inscription |</Text><Text onPress={() => navigation.navigate("Login")} style={styles.connexionColor}>Connexion</Text>
           </View>
         </View>
         <View style={styles.display}>
-          <Text style={styles.p}>Eos suscipit nostrum in temporibus dolores ut natus saepe.</Text>
+          <Text style={styles.p}>Veillez renseigner le formulaire ci-dessous.</Text>
         </View>
         <View style={styles.display}  >
           <View style={styles.input}>

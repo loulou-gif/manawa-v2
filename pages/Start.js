@@ -8,7 +8,7 @@ const Start = ({navigation}) => {
   return (
     <View style={{ backgroundColor: "#fff" }}>
       <View>
-        <ImageBackground source={image} style={{width: "auto", height: 900}} resizeMode="cover">
+        <ImageBackground source={image} style={{width: "auto", height: '100%'}} resizeMode="cover">
             <View style={{ width: 400, height: 200,borderRadius:150, marginLeft:-80, marginTop: -55 }}></View>
             <View style={{ width:268, height:189,flexDirection: 'row', flexWrap: 'wrap', justifyContent: "center", alignItems:'center', marginTop: -5, borderTopRightRadius: 5060,borderBottomRightRadius: 5060}}>
                 <Text style={styles.textStyle}>A CHACUN SON <Text style={styles.text}>MANAWA</Text></Text>
