@@ -1,17 +1,21 @@
-import { View, Text,StyleSheet, Button, ImageBackground, TextInput, Pressable } from 'react-native'
-import React from 'react'
-import PhoneInput from "react-native-phone-number-input";
-// import { Colors } from "react-native/Libraries/NewAppScreen";
-
+// Signup.js
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Button, ImageBackground, TextInput, Pressable, TouchableOpacity, Modal, ScrollView } from 'react-native';
+import IndicatorSearch from '../components/indicatorSearch';
 
 const Signup = ({navigation}) => {
   const image = require("../assets/images/background/second.png");
+  const [phone, setPhone] = useState(false)
+  const handleVisible =()=> {
+    setPhone(!phone)
+  }
   return (
     <View style={{}}>
       <ImageBackground source={image} style={{ width:"auto", height:900}} resizeMode="cover">
         <View style={styles.display} >
           <View style={styles.header}>
-          <Text onPress={() => navigation.navigate("Signup")} style={styles.inscriptionColor}>Inscription |</Text><Text onPress={() => navigation.navigate("Login")} style={styles.connexionColor}>Connexion</Text></View>
+            <Text onPress={() => navigation.navigate("Signup")} style={styles.inscriptionColor}>Inscription |</Text><Text onPress={() => navigation.navigate("Login")} style={styles.connexionColor}>Connexion</Text>
+          </View>
         </View>
         <View style={styles.display}>
           <Text style={styles.p}>Eos suscipit nostrum in temporibus dolores ut natus saepe.</Text>
@@ -20,14 +24,34 @@ const Signup = ({navigation}) => {
           <View style={styles.input}>
             <TextInput style={styles.inputs} placeholder='Nom de famille'/>
             <TextInput style={styles.inputs}  placeholder='Prénoms'/>
-            <PhoneInput placeholder='' />            
+            {/* <PhoneInput placeholder='' />             */}
+            <View style={styles.phone}>
+              <TouchableOpacity onPress={handleVisible} style={styles.indicator}><Text>+225</Text></TouchableOpacity>
+              <TextInput style={styles.phone_input} keyboardType='phone-pad'/>
+            </View>
           </View>
           <View style={styles.button}>
             {/* <Button title="SUIVANT" color="#DE9F42" onPress={() => navigation.navigate("Otpconnexion")} /> */}
             <Pressable style={styles.buttons} onPress={() => navigation.navigate("Otpcode")}><Text style={styles.textButton}>SUIVANT</Text></Pressable>
           </View>
         </View>
-          
+        <Modal animationType='fade' transparent={true} visible={phone}>
+            <View style={styles.container}>
+              <View style={styles.box}>
+                  <IndicatorSearch/>
+                  <ScrollView style={styles.indicators}>
+                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
+                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
+                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
+                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
+                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
+                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
+                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
+                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
+                  </ScrollView>
+              </View>
+            </View>
+        </Modal>
       </ImageBackground>
     </View>
   )
@@ -108,9 +132,55 @@ const styles = StyleSheet.create({
   buttons:{
     backgroundColor: "#DE9F42",
     height:50
+  },
+  phone:{
+    width:330,
+    height:50,
+    backgroundColor:'white',
+    flexDirection:'row',
+    // padding:5,
+    // justifyContent:'center',
+    alignItems:'center'
+  },
+  indicator:{
+    width:75,
+    borderRightWidth:1,
+    height:40,
+    borderColor:'#ABA9A9',
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  phone_input:{
+    width:255,
+    height:50,
+    // borderWidth:1,
+    paddingLeft:10,
+  },
+  box:{
+    width:'70%',
+    height:'50%',
+    backgroundColor:'white',
+    borderRadius:5
+  },
+  container:{
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:'rgba(255,255,255 0.9)',
+    height:'100%'
+  },
+  indicators:{
+    width:'100%',
+    height:50,
+    // borderWidth:1,
+  },
+  indic:{
+    width:'100%',
+    height:50,
+    borderBottomWidth:1,
+    justifyContent:'center',
+    paddingLeft:25,
+    borderColor:'#ABA9A9',
   }
-
 })
 
-
-export default Signup
+export default Signup;

@@ -6,10 +6,10 @@ import Start from './pages/Start';
 import Signup from './pages/Signup';
 import Otpcode from './pages/Otpcode';
 import Services from './pages/Services';
-import Tests from './pages/Tests';
+// import Tests from './pages/Tests';
 import Account from './pages/Account';
-import Prestataire from './pages/Prestataires';
-import Panier from './pages/Panier';
+// import Prestataire from './pages/Prestataires';
+// import Panier from './pages/Panier';
 import BottomsTabs from './routes/BottomsTabs';
 import * as Location from 'expo-location';
 import React, { useState, useEffect } from 'react';
@@ -43,11 +43,11 @@ export default function App() {
   const Stack = createNativeStackNavigator()
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Services'>
+      <Stack.Navigator initialRouteName='Start'>
         <Stack.Screen name='tabs' component={BottomsTabs} options={{headerShown:false}} />
-        <Stack.Screen name='Start' component={Start} />
-        <Stack.Screen name='Signup' component={Signup}/>
-        <Stack.Screen name='Otpcode' component={Otpcode} />
+        <Stack.Screen name='Start' component={Start} options={{headerShown:false}} />
+        <Stack.Screen name='Signup' component={Signup} options={{headerShown:false}} />
+        <Stack.Screen name='Otpcode' component={Otpcode} options={{headerShown:false}}  />
         {/* <Stack.Screen name='Services' component={Services} /> */}
         <Stack.Screen name='Account' component={Account} />
         <Stack.Screen name='Aperçu' component={Aperçu} />
