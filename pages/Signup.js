@@ -26,7 +26,7 @@ const Signup = ({navigation}) => {
             <TextInput style={styles.inputs}  placeholder='Prénoms'/>
             {/* <PhoneInput placeholder='' />             */}
             <View style={styles.phone}>
-              <TouchableOpacity onPress={handleVisible} style={styles.indicator}><Text>+225</Text></TouchableOpacity>
+              <TouchableOpacity onPress={handleVisible} style={styles.indicator}><Text style={styles.color}>+225</Text></TouchableOpacity>
               <TextInput style={styles.phone_input} keyboardType='phone-pad'/>
             </View>
           </View>
@@ -40,14 +40,7 @@ const Signup = ({navigation}) => {
               <View style={styles.box}>
                   <IndicatorSearch/>
                   <ScrollView style={styles.indicators}>
-                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
-                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
-                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
-                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
-                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
-                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
-                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
-                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text>+225 Ivory Coast</Text></TouchableOpacity>
+                      <TouchableOpacity onPress={handleVisible} style={styles.indic}><Text >+225 Ivory Coast</Text></TouchableOpacity>
                   </ScrollView>
               </View>
             </View>
@@ -106,7 +99,7 @@ const styles = StyleSheet.create({
     height:50,
     backgroundColor: "#fff",
     // marginTop: 150,
-    // borderRadius: 8,
+    borderRadius: 8,
     marginBottom:10,
     paddingLeft: 20,
     marginBottom: 20
@@ -140,7 +133,8 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     // padding:5,
     // justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    borderRadius:8
   },
   indicator:{
     width:75,
@@ -165,7 +159,7 @@ const styles = StyleSheet.create({
   container:{
     justifyContent:'center',
     alignItems:'center',
-    backgroundColor:'rgba(255,255,255 0.9)',
+    backgroundColor:'rgba(0, 0, 0, 0.3)',
     height:'100%'
   },
   indicators:{
@@ -180,6 +174,9 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     paddingLeft:25,
     borderColor:'#ABA9A9',
+  },
+  color:{
+    color:'#ABA9A9'
   }
 })
 
