@@ -23,7 +23,7 @@ const Otpcode = ({navigation}) => {
             {/* <PhoneInput placeholder='' />             */}
           </View>
           <View style={styles.input}>
-            <Button title="SUIVANT" color="#DE9F42" onPress={() => navigation.push("Service")} />
+            <Button title="SUIVANT" color="#DE9F42" onPress={() => navigation.push("tabs")} />
           </View>
         </View>
           
