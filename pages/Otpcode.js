@@ -14,7 +14,7 @@ const Otpcode = ({navigation}) => {
           </View>
         </View>
         <View style={styles.display}>
-          <Text style={styles.p}>Eos suscipit nostrum in temporibus dolores ut natus saepe.</Text>
+          <Text style={styles.p}>Veillez renseigner le code </Text>
         </View>
         <View style={styles.display}>
           <View style={styles.input}>
@@ -23,7 +23,7 @@ const Otpcode = ({navigation}) => {
             {/* <PhoneInput placeholder='' />             */}
           </View>
           <View style={styles.input}>
-            <Button title="SUIVANT" color="#DE9F42" onPress={() => navigation.navigate("Services")} />
+            <Button title="SUIVANT" color="#DE9F42" onPress={() => navigation.push("Service")} />
           </View>
         </View>
           
@@ -76,15 +76,16 @@ const styles = StyleSheet.create({
     marginBottom:-80,
   },
   inputs:{
-    // borderWidth:1,
+    borderWidth:1,
     width:330,
     height:50,
-    backgroundColor: "#E5E5E5",
+    // backgroundColor: "#E5E5E5",
     // marginTop: 150,
-    // borderRadius: 8,
+    borderRadius: 8,
     // marginBottom:10,
     paddingLeft: 20,
-    textAlign: "center"
+    textAlign: "center",
+    borderColor:'#ABA9A9'
   }
 
 })
