@@ -6,7 +6,7 @@ const SearchBar = ({ onChangeText }) => {
   const [searchPhrase, setSearchPhrase] = useState("");
 
   const handleSearch = (text) => {
-    setSearchPhrase(text);
+    setSearchPhrase(text); 
     onChangeText(text);
   };
 

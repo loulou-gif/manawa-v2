@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import React, {useEffect, useState} from 'react'
 import Header from '../components/Header'
 import InfoStoreBare from '../components/InfoStoreBar'
 import IconeFontAwesome from 'react-native-vector-icons/FontAwesome'
@@ -7,11 +7,40 @@ import IconeFontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import IconeMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import IconeEntypo from 'react-native-vector-icons/Entypo'
 import IconeAntDesign from 'react-native-vector-icons/AntDesign'
-import Message from '../components/Message'
+import {signOut, auth, db, collection, getDoc, getDocFromCache} from '../firebase/config'
 
 const Parametres = ({navigation}) => {
+  const userId = auth.currentUser.uid;
+  const [datas, setDatas] = useState({})
+  const logout = async() =>{
+    try{
+      await signOut(auth)
+      console.log('Message: User Disconnect successfully')
+      navigation.push('Start')
+    }catch(error){
+      console.log('Erreur Message: ', error)
+    }
+
+  }
+
+  // const getInfo = async() =>{
+  //   const docRef =  doc(db, 'Store', userId)
+  //   try {
+  //     const docSnap = await getDocFromCache(docRef)
+  //     if (docSnap.exists()) {
+  //       setDatas(docSnap.data())
+  //       // console.log("Document data:", docSnap.data());
+  //     } else {
+  //       // docSnap.data() will be undefined in this case
+  //       console.log("No such document!");
+  //     }
+  //   }catch(error){
+
+  //   }
+  // }
+
   return (
-    <View>
+    <View style={{height:'100%', flex:1}}>
       <Header navigation={navigation}/>
       <InfoStoreBare navigation={navigation}/>
       <View style={styles.stat}>
@@ -32,21 +61,22 @@ const Parametres = ({navigation}) => {
           <Text style={styles.lines}><IconeFontAwesome name='star' size={18}color="#DE9F42"/><IconeFontAwesome name='star' size={18}color="#DE9F42"/><IconeFontAwesome name='star' size={18}color="#DE9F42"/><IconeFontAwesome name='star' size={18}color="#DE9F42"/><IconeFontAwesome name='star' size={18}color="#DE9F42"/>  </Text> 
         </View>
       </View>
-      <View style={styles.Parametres}>
+      <View style={styles.settings}>
         <View style={styles.flex}>
          {/* <Text style={styles.options}><IconeFontAwesome5 name='user-edit' size={24}/> Modifier mon compte</Text> */}
         </View>
         <View style={styles.flex}>
-         <Text style={styles.options}><IconeEntypo name="price-ribbon" size={24}/> <Text style={styles.icone} > Bonus et reduction</Text></Text>
+         <Text style={styles.options}><IconeEntypo name="price-ribbon" size={24}/> Bonus et reduction</Text>
         </View>
         <View style={styles.flex}>
-        <Text style={styles.options}><IconeAntDesign name='customerservice' size={24}/> <Text style={styles.icone} > Services clients</Text></Text>
+        <Text style={styles.options}><IconeAntDesign name='customerservice' size={24}/> Services clients</Text>
         </View>
         <View style={styles.flex}>
-          <Text style={styles.options}><IconeMaterialCommunityIcons name='logout' size={24}/> <Text style={styles.icone} > Déconnexion</Text></Text>
+          <TouchableOpacity onPress={logout} >
+              <Text style={styles.options} ><IconeMaterialCommunityIcons  name='logout' size={24}/> Déconnexion</Text>
+          </TouchableOpacity>
         </View>
       </View>
-      {/* <Message navigation={navigation}/> */}
     </View>
   )
 }
@@ -76,7 +106,7 @@ const styles  = StyleSheet.create({
   flex:{
     flexDirection:'row',
   },
-  Parametres:{
+  settings:{
     marginTop:10,
     width:400,
   },
@@ -84,11 +114,7 @@ const styles  = StyleSheet.create({
     margin:10,
     fontSize:20,
     color:'#47300D',
-    marginLeft:20,
-    marginRight:50,
-  },
-  icone:{
-    marginLeft:100
+    marginLeft:20
   }
 })
 

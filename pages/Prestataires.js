@@ -12,7 +12,7 @@ const Prestataire = ({navigation}) => {
 
   // Filtrer les données de Store en fonction de l'ID du service sélectionné
 //   const filteredData = Store.filter((data) => data.id_service === id || data.id === data.id);
-const [searchPhrase, setSearchPhrase] = useState("");
+  const [searchPhrase, setSearchPhrase] = useState("");
 
     // Fonction de gestion de la recherche
     const handleSearch = (text) => {

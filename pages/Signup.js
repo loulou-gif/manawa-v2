@@ -1,53 +1,61 @@
 // Signup.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, ImageBackground, TextInput, Pressable, TouchableOpacity, Modal, ScrollView } from 'react-native';
-import IndicatorSearch from '../components/indicatorSearch';
-import {app, analytics,  RecaptchaVerifier, auth} from '../firebase/config.js'
+import IndicatorSearch from '../components/indicatorSearch.js';
+import {app, auth, createUserWithEmailAndPassword} from '../firebase/config.js'
+// import Recaptcha from 'react-native-recaptcha-v3';
 
 const Signup = ({navigation}) => {
   const image = require("../assets/images/background/second.png");
+  
   const [phone, setPhone] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  // useEffect(() => {
-  //   window.recaptchaVerifier = new auth.RecaptchaVerifier('sign-in-button', {
-  //     'size': 'invisible',
-  //     'callback': (response) => {
-  //       // reCAPTCHA solved, allow signInWithPhoneNumber.
-  //       onSignInSubmit();
-  //     }
-  //   }, auth);
-  // }, [])
+  const signup = async () =>{
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      console.log('Message: User has been created successfully');
+      navigation.push('Login');
+    } catch (error) {
+      setErrorMessage(error.message);
+      console.error('Error: ', error);
+    }
+  }
 
   const handleVisible =()=> {
     setPhone(!phone)
   }
   return (
-    <View style={{}}>
-      <ImageBackground source={image} style={{ width:"auto", height:'100%'}} resizeMode="cover">
+    <View style={styles.Card}>
+      <ImageBackground source={image} style={styles.background} resizeMode="cover">
         <View style={styles.display} >
           <View style={styles.header}>
-            <Text onPress={() => navigation.navigate("Signup")} style={styles.inscriptionColor}>Inscription |</Text><Text onPress={() => navigation.navigate("Login")} style={styles.connexionColor}>Connexion</Text>
+            <Text onPress={() => navigation.navigate("Signup")} style={styles.inscriptionColor}>INCSRIPTION</Text>
           </View>
+          {/* <Text style={styles.first_p}>Veillez renseigner le formulaire ci-dessous.</Text> */}
         </View>
-        <View style={styles.display}>
-          <Text style={styles.p}>Veillez renseigner le formulaire ci-dessous.</Text>
-        </View>
-        <View style={styles.display}  >
-          <View style={styles.input}>
-            {/* <TextInput style={styles.inputs} placeholder='Nom de famille'/>
-            <TextInput style={styles.inputs}  placeholder='Prénoms'/> */}
-            {/* <PhoneInput placeholder='' />             */}
-            <View style={styles.phone}>
-              <TouchableOpacity onPress={handleVisible} style={styles.indicator}><Text style={styles.color}>+225</Text></TouchableOpacity>
-              <TextInput style={styles.phone_input} keyboardType='phone-pad'/>
+        <View style={styles.box_inputs}  >
+            <View style={styles.input}>
+              {/* <View style={styles.phone}>
+                <TouchableOpacity onPress={handleVisible} style={styles.indicator}><Text style={styles.color}>+225</Text></TouchableOpacity>
+                <TextInput style={styles.phone_input} keyboardType='phone-pad'/>
+              </View> */}
+              <View style={styles.phone}>
+                <TextInput style={styles.phone_input} value={email} keyboardType='email-address' onChangeText={(text)=> setEmail(text)} placeholder='Email'/>
+              </View>
+              <View style={styles.phone}>
+                <TextInput style={styles.phone_input} value={password} secureTextEntry={true} onChangeText={(text)=> setPassword(text)} placeholder='Mot de passe' />
+              </View>
+                <Pressable style={styles.buttons} onPress={signup}><Text style={styles.textButton}>SUIVANT</Text></Pressable>
+                
+              <View style={styles.text}>
+                <Text style={styles.p}>Déjà un compte?<Text onPress={() => navigation.navigate("Login")} style={styles.connexionColor}> Connectez-vous</Text></Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.button}>
-            {/* <Button title="SUIVANT" color="#DE9F42" onPress={() => navigation.navigate("Otpconnexion")} /> */}
-            <Pressable style={styles.buttons} onPress={() => navigation.navigate("Otpcode")}><Text style={styles.textButton}>SUIVANT</Text></Pressable>
-          </View>
         </View>
-        <Modal animationType='fade' transparent={true} visible={phone}>
+        {/* <Modal animationType='fade' transparent={true} visible={phone}>
             <View style={styles.container}>
               <View style={styles.box}>
                   <IndicatorSearch/>
@@ -56,7 +64,7 @@ const Signup = ({navigation}) => {
                   </ScrollView>
               </View>
             </View>
-        </Modal>
+        </Modal> */}
       </ImageBackground>
     </View>
   )
@@ -68,21 +76,28 @@ const styles = StyleSheet.create({
     fontWeight:"bold",
   },
   inscriptionColor:{
-    color: "#FFA012",
-    fontSize: 26,
+    color: "#fff",
+    fontSize: 30,
     fontWeight:"bold",
   },
   connexionColor:{
-    color: "#FFFFFF",
-    fontSize: 26,
-    fontWeight:"bold",
+    color: "#FFA012",
+    fontSize: 18,
   },
   header:{
-    marginTop: 150,
-    justifyContent:"space-around",
-    flexDirection:"row",
-    width:290,
-    height:30,
+    // marginTop: 150,
+    justifyContent:"center",
+    // flexDirection:"row",
+    width:330,
+    height:50,
+    // borderWidth:1,
+  },
+  first_p:{
+    width:330,
+    height:37,
+    fontSize:16,
+    color:"#E5E5E5",
+    marginTop:10,
   },
   p:{
     width:272,
@@ -94,14 +109,20 @@ const styles = StyleSheet.create({
   },
   display:{
     alignItems:"center",
-    // height:30,
+    marginTop:'-70%'
+  },
+  text:{
+    alignItems:"center",
+  },
+  box_inputs:{
+    alignItems:"center",
   },
   input:{
     // borderWidth:1,
-    width:330,
+    width:'100%',
     height:50,
     // backgroundColor: "#E5E5E5",
-    marginTop: 130,
+    marginTop: 50,
     borderRadius: 8,
     marginBottom:10,
   },
@@ -121,25 +142,20 @@ const styles = StyleSheet.create({
     width:330,
     height:50,
     // backgroundColor: "#E5E5E5",
-    marginTop: 20,
+    marginTop: '5%',
     borderRadius: 8,
     marginBottom:10,
   },
   textButton:{
-    textAlign:"center",
     color: "#fff",
-    alignItems:"center",
-    alignContent:"center",
-    flex:1,
-    justifyContent:"center",
-    margin:15,
-    fontSize:16,
-    fontWeight:'bold',
+    fontSize:18
   },
   buttons:{
     backgroundColor: "#DE9F42",
     height:50,
-    borderRadius: 8,
+    borderRadius:8,
+    alignItems:'center',
+    justifyContent:'center',
   },
   phone:{
     width:330,
@@ -149,7 +165,8 @@ const styles = StyleSheet.create({
     // padding:5,
     // justifyContent:'center',
     alignItems:'center',
-    borderRadius:8
+    borderRadius:8,
+    marginBottom:'5%'
   },
   indicator:{
     width:75,
@@ -160,7 +177,7 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   phone_input:{
-    width:255,
+    width:'100%',
     height:50,
     // borderWidth:1,
     paddingLeft:10,
@@ -192,6 +209,16 @@ const styles = StyleSheet.create({
   },
   color:{
     color:'#ABA9A9'
+  },
+  Card:{
+    height:'100%',
+    width:'100%'
+  },
+  background:{
+    width:"100%",
+    height:900,
+    alignItems:'center',
+    justifyContent:'center',
   }
 })
 

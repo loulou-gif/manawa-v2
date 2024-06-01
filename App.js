@@ -17,33 +17,39 @@ import Aperçu from './pages/Aperçu';
 import Avis from './pages/Avis';
 import Login from './pages/Login';
 import FiltreService from './pages/FiltreService';
+import { auth } from './firebase/config';
+import { onAuthStateChanged } from "firebase/auth";
+
 export default function App() {
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  // const Stack = createNativeStackNavigator();
+  const [isLogged, setIsLogged] = useState(null);
 
+  // Utiliser useEffect pour vérifier l'état de la connexion ici
   useEffect(() => {
-    (async () => {
-      
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLogged(true);
+      } else {
+        setIsLogged(false);
       }
+    });
 
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-    })();
+    // Clean up the subscription on unmount
+    return () => unsubscribe();
   }, []);
 
-  let text = 'Waiting..';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
+  if (isLogged === null) {
+    // Vous pouvez afficher un écran de chargement ici
+    return (
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    );
   }
+
   const Stack = createNativeStackNavigator()
   return (
-    <NavigationContainer>
+    <NavigationContainer initialRouteName={isLogged ? 'tabs' : 'Start'}>
       <Stack.Navigator>
         <Stack.Screen name='tabs' component={BottomsTabs} options={{headerShown:false}} />
         <Stack.Screen name='Start' component={Start} options={{headerShown:false}} />
