@@ -6,10 +6,9 @@ import { Store } from '../data/Store.js';
 import Prest from '../components/Prest.js';
 import Message from '../components/Message.js';
 
-
 const Prestataire = ({navigation}) => {
 //   const {id}= route.params;
-
+    
   // Filtrer les données de Store en fonction de l'ID du service sélectionné
 //   const filteredData = Store.filter((data) => data.id_service === id || data.id === data.id);
   const [searchPhrase, setSearchPhrase] = useState("");

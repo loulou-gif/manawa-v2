@@ -1,11 +1,11 @@
-import { View, ScrollView, Text, StyleSheet, Image, Pressable, Modal, TouchableOpacity } from 'react-native';
+import { View, ScrollView, Text, StyleSheet, Image, Pressable, Modal, TouchableOpacity , DataTable} from 'react-native';
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import { Paniers } from '../data/Paniers';
 import Icone from 'react-native-vector-icons/Entypo';
 import IconeAntDesign from 'react-native-vector-icons/AntDesign';
 import IconeFontAwesome from 'react-native-vector-icons/FontAwesome';
-import { DataTable } from 'react-native-paper';
+// import { DataTable } from 'react-native-paper';
 import InfoStoreBare from '../components/InfoStoreBar';
 import IconeMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 // import IconeAntDesign from 'react-native-vector-icons/AntDesign'

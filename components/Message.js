@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { Modal } from 'react-native-paper';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native';
+// import { Modal } from 'react-native-paper';
 import IconeMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconeIonicons from 'react-native-vector-icons/Ionicons';
 import Sms from './Sms';

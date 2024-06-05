@@ -1,6 +1,6 @@
 import { View, Text,StyleSheet, Button, ImageBackground, TextInput } from 'react-native'
 import React from 'react'
-import PhoneInput from 'react-native-phone-number-input';
+// import PhoneInput from 'react-native-phone-number-input';
 
 const Otpcode = ({navigation}) => {
   const image = require("../assets/images/background/third.png");

@@ -6,18 +6,21 @@ import StoreHeader from '../components/StoreHeader'
 import { product } from '../data/Product'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Message from '../components/Message'
+import {doc, getDoc, auth, db,  collection, query, where, getDocs } from '../firebase/config.js'
+
 const Accounts = ({route, navigation}) => {
   const [date, setDate] = useState(new Date())
   const [showPicker, setShowPicker] = useState(false)
   const {id} = route.params;
   FilterData = product.filter((data) => data.id_store === id)
+  
 
   const onChange = (event, updateDate) =>{
     const currentDate = updateDate || date;
     setShowPicker(false),
     setDate(currentDate)
   }
-
+  console.log(id)
   const showDataPicker =()=>{
     setShowPicker(true)
   }
@@ -25,7 +28,7 @@ const Accounts = ({route, navigation}) => {
     <View>  
       {/* <Header/> */}
       <ScrollView>
-      <StoreHeader navigation={navigation}/>
+      <StoreHeader route={route} id={id} navigation={navigation}/>
       {FilterData.map((data)=> (
         <View key={data.id} style={styles.Card} >
           <Image style={styles.image} source={data.image}/>

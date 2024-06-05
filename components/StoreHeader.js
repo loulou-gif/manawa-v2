@@ -4,7 +4,7 @@ import React from 'react'
 const StoreHeader = ({navigation}) => {
   return (
     <View>
-      <Image style={styles.image} source={require("../assets/images/servicesBackgrounds/babershop.jpg")}/>
+      <Image style={styles.image} source={require("../assets/images/background/background.png")}/>
       <View style={styles.bottom}>
         <View style={styles.flex}>
             <Image source={require('../assets/images/Profils/p8.png')} />
@@ -26,8 +26,9 @@ const StoreHeader = ({navigation}) => {
 
 const styles = StyleSheet.create({
     image:{
-        width:500,
-        height:120
+        width:'100%',
+        height:126,
+        backgroundColor:'#ABA9A9'
     },
     state:{
         color:"green",

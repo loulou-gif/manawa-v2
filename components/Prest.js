@@ -1,21 +1,48 @@
 import { View, Text, StyleSheet , ScrollView, Pressable, Image } from 'react-native'
-import React from 'react'
-import { Store } from '../data/Store.js';
+import React, {useState, useEffect} from 'react'
+import {doc, getDoc, auth, db,  collection, query, where, getDocs } from '../firebase/config.js'
 
 
 
-const Prest = ({navigation, store}) => {
+const Prest = ({navigation}) => {
+  
+  const [prestData, setPrestData] = useState([]);
+  const getPrestataire = async() =>{
+    try{
+      const q = query(collection(db,'Store'))
+      const querySnapshot = await getDocs(q)
+      const  prest = []
+      querySnapshot.forEach((doc) => {
+        const {name, description, logoUri, closingTime, openingTime, id_prestataire} = doc.data()
+        const limitLength = description.length > 50 ? description.substring(0, 50) + '...' : description;
+        prest.push({id: id_prestataire, name: name, description: limitLength, logo: logoUri, ouverture: openingTime, fermeture: closingTime})
+      })
+      return prest
+    }catch(error){
+
+    }
+  }
+  const printData = async () => {
+    const prest = await getPrestataire();
+    setPrestData(prest);
+}
+
+console.log(prestData)
+
+  useEffect(() => {
+      printData();
+  }, []);
   return (
     <View style={styles.all}>
      <View style={styles.container}>
-        {store.map((data) => ( 
+        {prestData.map((data) => ( 
           <Pressable key={data.id} onPress={() => navigation.push('Account', {id: data.id})}>
-            <View style={styles.item}> 
-              <Image style={styles.image} source={data.profil}/>
+            <View style={styles.item}>  
+              <Image style={styles.image} source={{uri: data.logo}}/>
               <View style={styles.textContainer}>
-                <Text style={styles.title}>{data.name ? data.name : data.title}</Text> 
+                <Text style={styles.title}>{data.name ? data.name : "Nom du store"}</Text> 
                 {/* Utilisation de la condition pour afficher name ou title */}
-                <Text style={styles.description}>{data.description}</Text>
+                <Text style={styles.description}>{data.description} </Text>
               </View> 
             </View>
           </Pressable>
@@ -42,6 +69,7 @@ const styles = StyleSheet.create({
       width: 70,
       height: 70,
       borderRadius: 8,
+      backgroundColor:'#ABA9A9'
     },
     textContainer: {
       marginLeft: 10,

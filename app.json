@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Manawa-v1",
-    "slug": "Manawa-v1",
+    "name": "Manawa-client",
+    "slug": "Manawa-client",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,38 +11,23 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.kadmiel.Manawav1"
+      "supportsTablet": true
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": [
-        "android.permission.ACCESS_COARSE_LOCATION",
-        "android.permission.ACCESS_FINE_LOCATION"
-      ],
-      "package": "com.kadmiel.Manawav1"
+      "package": "com.kadmiel.Manawaclient"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      [
-        "expo-location",
-        {
-          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
-        }
-      ]
-    ],
     "extra": {
       "eas": {
-        "projectId": "cd6e85db-bbb5-4c83-9ce5-2b7ef4efb70e"
+        "projectId": "09fe3a7c-9820-436a-ba35-400f42932b97"
       }
     }
   }
