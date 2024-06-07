@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
+import { scale, verticalScale } from 'react-native-size-matters';
 
 const Header = () => {
   return (
@@ -12,18 +13,16 @@ const Header = () => {
 const styles = StyleSheet.create({
     header:{
       backgroundColor:"#DE9F42",
-      height:50,
-      justifyContent:'center',
-      padding:5,
+      height:verticalScale(50),
+      justifyContent:'center'
     },
     logo:{
       color:"#fff",
-      marginLeft:20,
+      marginLeft:verticalScale(16),
       fontStyle: "italic",
       fontWeight:"bold",
-      fontSize:20,
-      marginTop: 10,
-    },
+      fontSize:scale(20),
+    }
 })
 
 export default Header

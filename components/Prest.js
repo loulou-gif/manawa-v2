@@ -5,7 +5,6 @@ import {doc, getDoc, auth, db,  collection, query, where, getDocs } from '../fir
 
 
 const Prest = ({navigation}) => {
-  
   const [prestData, setPrestData] = useState([]);
   const getPrestataire = async() =>{
     try{
@@ -27,7 +26,7 @@ const Prest = ({navigation}) => {
     setPrestData(prest);
 }
 
-console.log(prestData)
+  console.log(prestData)
 
   useEffect(() => {
       printData();
@@ -40,7 +39,7 @@ console.log(prestData)
             <View style={styles.item}>  
               <Image style={styles.image} source={{uri: data.logo}}/>
               <View style={styles.textContainer}>
-                <Text style={styles.title}>{data.name ? data.name : "Nom du store"}</Text> 
+                <Text style={styles.title}>{data.name ? data.name : "Nom du store"} {console.log(data.id)} </Text> 
                 {/* Utilisation de la condition pour afficher name ou title */}
                 <Text style={styles.description}>{data.description} </Text>
               </View> 

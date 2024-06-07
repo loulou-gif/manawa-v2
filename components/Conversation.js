@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, ScrollView,
 import React from 'react';
 import IconeIonicons from 'react-native-vector-icons/Ionicons';
 import IconeFoundation from 'react-native-vector-icons/Foundation';
+import { scale, verticalScale } from 'react-native-size-matters';
 
 const Conversation = ({ d, onClose }) => {
   // Fonction pour insérer des retours à la ligne tous les 80 caractères
@@ -21,7 +22,7 @@ const Conversation = ({ d, onClose }) => {
         </TouchableOpacity>
         <Image style={styles.image} source={d.pp} />
         <Text style={styles.text_header}>{d.name}</Text>
-      </View>
+      </View> 
       <ImageBackground source={require('../assets/images/background/06.png')} style={styles.backgroundImage}>
       <ScrollView style={styles.conversation}>
         <View style={styles.expediteur}>
@@ -43,7 +44,7 @@ const Conversation = ({ d, onClose }) => {
         </View>
         <TextInput style={styles.champs} placeholder='' multiline={true} />
         <TouchableOpacity style={styles.send}>
-          <IconeIonicons name='send' size={12} style={styles.color} />
+          <IconeIonicons name='send' size={18} style={styles.color} />
         </TouchableOpacity>
       </View>
     </View>
@@ -55,9 +56,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     width: '100%',
+    height:'100%'
   },
   header: {
-    height: 50,
+    height: verticalScale(50),
     backgroundColor: '#7A4D09',
     flexDirection: 'row',
     alignItems: 'center',
@@ -67,13 +69,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   text_header: {
-    fontSize: 20,
+    fontSize: scale(18),
     color: 'white',
     marginLeft: -5,
   },
   conversation: {
     flex: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(0,0,0 0.1)',
     padding: 10,
   },
   backgroundImage: {
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
     borderColor: '#ABA9A9',
-    height: 50,
+    height: verticalScale(50),
   },
   champs: {
     flex: 1,
@@ -104,8 +106,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   send: {
-    width: 35,
-    height: 35,
+    width: scale(35),
+    height: verticalScale(35),
     borderRadius: 25,
     backgroundColor: '#DE9F42',
     justifyContent: 'center',
@@ -123,8 +125,8 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   image: {
-    width: 40,
-    height: 40,
+    width: scale(35),
+    height: verticalScale(35),
     backgroundColor: '#ABA9A9',
     borderRadius: 20,
     marginLeft: 20,

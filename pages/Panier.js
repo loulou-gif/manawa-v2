@@ -1,18 +1,20 @@
-import { View, ScrollView, Text, StyleSheet, Image, Pressable, Modal, TouchableOpacity , DataTable} from 'react-native';
+import { View, ScrollView, Text, StyleSheet, Image, Pressable, Modal, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import { Paniers } from '../data/Paniers';
 import Icone from 'react-native-vector-icons/Entypo';
 import IconeAntDesign from 'react-native-vector-icons/AntDesign';
 import IconeFontAwesome from 'react-native-vector-icons/FontAwesome';
-// import { DataTable } from 'react-native-paper';
+import { DataTable } from 'react-native-paper';
 import InfoStoreBare from '../components/InfoStoreBar';
 import IconeMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 // import IconeAntDesign from 'react-native-vector-icons/AntDesign'
 import IconeFeather from 'react-native-vector-icons/Feather'
+import IconeEntypo from 'react-native-vector-icons/Entypo'
 import SearchBar from '../components/SearchBar';
+import { scale, verticalScale } from 'react-native-size-matters';
 
-const Panier = ({navigation}) => {
+const Home = ({navigation}) => {
     const [modalVisible, setModalVisible] = useState(false); 
     const [ confirm, setConfirm] = useState(false);
     const [ annul, setAnnul] = useState(false);
@@ -50,13 +52,13 @@ const Panier = ({navigation}) => {
                     columns ?
                     (
                         <TouchableOpacity style={styles.box_icone} onPress={handleVisible}>
-                            <IconeFeather style={styles.Icone} name='credit-card' size={30}/>
+                            <IconeEntypo style={styles.Icone} name='grid' size={30}/>
                         </TouchableOpacity>
                     )
                     :
                     (
                         <TouchableOpacity style={styles.box_icone} onPress={handleVisible}>
-                            <IconeFeather style={styles.Icone} name='columns' size={30}/>
+                            <IconeFontAwesome style={styles.Icone} name='th-list' size={30}/>
                         </TouchableOpacity>
                     )
                 }
@@ -65,12 +67,12 @@ const Panier = ({navigation}) => {
                     (<View style={styles.container}>
                         {filteredStore.map((data) => (
                             <View style={styles.box} key={data.id}>
-                                <Icone key={data.id} name='dots-three-horizontal' onPress={() => handleInfoFacture(data)} size={16} color="black" style={{ textAlign: "right", width: 150, marginTop: -5, marginRight: -5 }} />
+                                <Icone key={data.id} name='dots-three-horizontal' onPress={() => handleInfoFacture(data)} style={{ textAlign: "right", width: scale(150), marginRight: scale(15) }} />
                                 <View style={styles.buttonsContainer}>
                                     <Image style={styles.images} source={data.image} />
                                 </View>
                                 <View style={styles.details}>
-                                    <View>
+                                    <View style={styles.preview_details}>
                                         <Text style={styles.text}><Text style={styles.bold}>Service:</Text> {data.name}</Text>
                                         <Text style={styles.text}><Text style={styles.bold}>Date:</Text> {data.date}</Text>
                                         <Text style={styles.text}><Text style={styles.bold}>Coût:</Text> {data.price}</Text>
@@ -82,27 +84,28 @@ const Panier = ({navigation}) => {
                                 </View>
                                 <Modal animationType="fade" transparent={true} visible={modalVisible} onRequestClose={() => { Alert.alert('Modal has been closed.'); setModalVisible(!modalVisible); }}>
                                     <View style={styles.backgroundModal}>
-                                        {selectedUserData && <View style={styles.model_info}>
-                                        <Pressable   onPress={() => setModalVisible(!modalVisible)}><Text style={{marginRight:10, marginTop:10, textAlign:'right'}}><IconeAntDesign name='closecircleo' size={26}/></Text></Pressable>
-                                        <View style={styles.box_info}>
-                                            <View style={styles.circle}>
-                                                <Text style={styles.circle_text}>JK</Text>
+                                        {selectedUserData &&
+                                        <View style={styles.model_info}>
+                                            <Pressable   onPress={() => setModalVisible(!modalVisible)}><Text style={{marginRight:10, marginTop:10, textAlign:'right'}}><IconeAntDesign name='closecircleo' size={26}/></Text></Pressable>
+                                            <View style={styles.box_info}>
+                                                <View style={styles.circle}>
+                                                    <Text style={styles.circle_text}>JK</Text>
+                                                </View>
+                                                <View style={styles.info}>
+                                                    <Text style={styles.name}>{selectedUserData.client}</Text>
+                                                    <Text style={styles.id}>ID client: {selectedUserData.IDclient}</Text>
+                                                    <Text style={styles.contact}>Contact: {selectedUserData.contactClient}</Text>
+                                                </View>
+                                                <View style={{ marginRight:10}}>
+                                                    <IconeFontAwesome size={20} name='download'/>
+                                                </View>
                                             </View>
-                                            <View style={styles.info}>
-                                                <Text style={styles.name}>{selectedUserData.client}</Text>
-                                                <Text style={styles.id}>ID client: {selectedUserData.IDclient}</Text>
-                                                <Text style={styles.contact}>Contact: {selectedUserData.contactClient}</Text>
-                                            </View>
-                                            <View style={{ marginRight:10}}>
-                                                <IconeFontAwesome size={20} name='download'/>
-                                            </View>
-                                        </View>
                                             <DataTable style={styles.table}>
                                                 <DataTable.Header style={styles.table_title}>
                                                     <DataTable.Title style={styles.table_text_title}><Text style={styles.table_text_title}>Service</Text></DataTable.Title>
                                                     <DataTable.Title style={styles.table_text_title}><Text style={styles.table_text_title}>{selectedUserData.name}</Text></DataTable.Title>
                                                 </DataTable.Header>
-                                                <DataTable.Row >
+                                                <DataTable.Row style={styles.second_row_table}>
                                                     <DataTable.Cell style={styles.text_row}><Text style={styles.text_row}>Durée du service </Text></DataTable.Cell>
                                                     <DataTable.Cell style={styles.text_row}><Text style={styles.text_row}>{selectedUserData.durée}</Text></DataTable.Cell>
                                                 </DataTable.Row>
@@ -124,7 +127,7 @@ const Panier = ({navigation}) => {
                                                 </DataTable.Row>
                                             </DataTable>
                                             <View style={styles.map}>
-                                            <Image style={styles.map} source={require('../assets/images/maps/map.png')} />
+                                                <Image style={styles.map} source={require('../assets/images/maps/map.png')} />
                                             </View>
                                             <View style={styles.buttonsContainer_info_model}>
                                                 <Pressable style={styles.btn_annulation} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Non </Text></Pressable>
@@ -179,27 +182,28 @@ const Panier = ({navigation}) => {
                                     </View>
                                     <Modal animationType="fade" transparent={true} visible={modalVisible} onRequestClose={() => { Alert.alert('Modal has been closed.'); setModalVisible(!modalVisible); }}>
                                         <View style={styles.backgroundModal}>
-                                            {selectedUserData && <View style={styles.model_info}>
-                                            <Pressable   onPress={() => setModalVisible(!modalVisible)}><Text style={{marginRight:10, marginTop:10, textAlign:'right'}}><IconeAntDesign name='closecircleo' size={26}/></Text></Pressable>
-                                            <View style={styles.box_info}>
-                                                <View style={styles.circle}>
-                                                    <Text style={styles.circle_text}>JK</Text>
+                                            {selectedUserData && 
+                                            <View style={styles.model_info}>
+                                                <Pressable   onPress={() => setModalVisible(!modalVisible)}><Text style={{marginRight:scale(10), marginTop:scale(10), textAlign:'right'}}><IconeAntDesign name='closecircleo' size={26}/></Text></Pressable>
+                                                <View style={styles.box_info}>
+                                                    <View style={styles.circle}>
+                                                        <Text style={styles.circle_text}>JK</Text>
+                                                    </View>
+                                                    <View style={styles.info}>
+                                                        <Text style={styles.name}>{selectedUserData.client}</Text>
+                                                        <Text style={styles.id}>ID client: {selectedUserData.IDclient}</Text>
+                                                        <Text style={styles.contact}>Contact: {selectedUserData.contactClient}</Text>
+                                                    </View>
+                                                    <View style={{ marginRight:scale(15)}}>
+                                                        <IconeFontAwesome size={20} name='download'/>
+                                                    </View>
                                                 </View>
-                                                <View style={styles.info}>
-                                                    <Text style={styles.name}>{selectedUserData.client}</Text>
-                                                    <Text style={styles.id}>ID client: {selectedUserData.IDclient}</Text>
-                                                    <Text style={styles.contact}>Contact: {selectedUserData.contactClient}</Text>
-                                                </View>
-                                                <View style={{ marginRight:10}}>
-                                                    <IconeFontAwesome size={20} name='download'/>
-                                                </View>
-                                            </View>
                                                 <DataTable style={styles.table}>
                                                     <DataTable.Header style={styles.table_title}>
                                                         <DataTable.Title style={styles.table_text_title}><Text style={styles.table_text_title}>Service</Text></DataTable.Title>
                                                         <DataTable.Title style={styles.table_text_title}><Text style={styles.table_text_title}>{selectedUserData.name}</Text></DataTable.Title>
-                                                    </DataTable.Header>
-                                                    <DataTable.Row >
+                                                    </DataTable.Header >
+                                                    <DataTable.Row style={styles.second_row_table} >
                                                         <DataTable.Cell style={styles.text_row}><Text style={styles.text_row}>Durée du service </Text></DataTable.Cell>
                                                         <DataTable.Cell style={styles.text_row}><Text style={styles.text_row}>{selectedUserData.durée}</Text></DataTable.Cell>
                                                     </DataTable.Row>
@@ -221,7 +225,7 @@ const Panier = ({navigation}) => {
                                                     </DataTable.Row>
                                                 </DataTable>
                                                 <View style={styles.map}>
-                                                <Image style={styles.map} source={require('../assets/images/maps/map.png')} />
+                                                    <Image style={styles.map} source={require('../assets/images/maps/map.png')} />
                                                 </View>
                                                 <View style={styles.buttonsContainer_info_model}>
                                                     <Pressable style={styles.btn_annulation} onPress={() =>setAnnul(!annul)}><Text style={styles.buttonText}>Non </Text></Pressable>
@@ -268,13 +272,13 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 10,
+        marginTop: scale(10),
     },
     box: {
-        width: '45%',
+        width: scale(157),
         margin: '2.5%',
         borderWidth: 1,
-        borderColor: '#ABA9A9',
+        borderColor: '#D9D9D9',
         padding: 15,
         alignItems: "center",
     },
@@ -287,10 +291,14 @@ const styles = StyleSheet.create({
     details: {
         alignItems: 'center',
     },
+    preview_details:{
+        // borderWidth:1,
+        // width:scale(130),
+    },
     text: {
-        fontSize: 12,
+        fontSize: scale(10),
         color: "#ABA9A9",
-        marginBottom: 5,
+        marginBottom: scale(5),
 
     },
     bold: {
@@ -299,20 +307,21 @@ const styles = StyleSheet.create({
     },
     buttonsContainer: {
         flexDirection: 'row',
-        marginTop: 10,
+        marginTop: verticalScale(10),
+        marginBotto: verticalScale(10),
     },
     btn_annulation: {
         backgroundColor: '#FFA012',
-        width: 75,
-        height: 30,
+        width: scale(65),
+        height: verticalScale(25),
         alignItems: 'center',
         justifyContent: 'center',
         margin: 5
     },
     btn_confirmation: {
         backgroundColor: '#47300D',
-        width: 75,
-        height: 30,
+        width: scale(65),
+        height: verticalScale(25),
         alignItems: 'center',
         justifyContent: 'center',
         margin: 5
@@ -326,79 +335,77 @@ const styles = StyleSheet.create({
     },
     model:{
         width:"100%",
-        height:100,
+        height:verticalScale(150),
         backgroundColor:'#fff',
         alignItems: 'center',
-        marginTop:350,
-        marginLeft:60,
-        paddingTop:10,
-        shadowColor:'black',
-        shadowOffset: { width: 10, height: 10 },
-        shadowOpacity: 0.8,
-        shadowRadius: 1,
+        justifyContent:'center',
+        width:scale(250)
     },
-    model_info:{
-        height:650,
-        marginTop:100,
+    model_info:{ 
+        height:scale(500),
+        // marginTop:scale(100),
         backgroundColor:'#fff',
-        width:400,
-        marginLeft:5
+        width:scale(340),
+        flexDirection:'column'
     },
     table:{
-        marginTop:10,
+        marginTop:verticalScale(10),
         marginLeft:10,
-        width:375
-    },circle:{
-        width:100,
-        height:100,
-        borderRadius:50,
+        width:scale(320)
+    },
+    circle:{
+        width:scale(80),
+        height:scale(80),
+        borderRadius:scale(50),
         backgroundColor:'#7A4D09',
-        marginTop:10,
-        marginLeft:20
+        marginTop:scale(5),
+        marginLeft:scale(5),
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     circle_text:{
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 30,
-        textAlign:'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        // margin: scale(20),
+        // textAlign:'center',
         color:'#fff',
-        fontSize:25
+        fontSize:scale(20)
     },
     name:{
-        fontSize:20,
-        marginLeft:20,
+        fontSize:scale(16),
+        marginLeft:scale(16),
         color:'#47300D'
     },
     info:{
-        width:205,
-        marginLeft:10
+        width:scale(185),
+        marginLeft:scale(5)
     },
     id:{
-        fontSize:15,
+        fontSize:scale(12),
         color:'#8C8B8B',
-        marginLeft:20
+        marginLeft:scale(16)
     },
     contact:{
-        fontSize:15,
+        fontSize:scale(12),
         color:'#8C8B8B',
-        marginLeft:20
+        marginLeft:scale(16)
     },
     table_title:{
         backgroundColor:'#715D3E',
-        height:35,
+        height:scale(30),
         opacity:0.7
     },
     table_text_title:{
         color:'white',
-        marginTop:-10,
-        fontSize:16
+        marginTop:scale(-8),
+        fontSize:scale(13)
     },
     box_info:{
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
         marginTop: 5,
     },
@@ -418,26 +425,29 @@ const styles = StyleSheet.create({
         marginTop:-10,
     },
     text_row:{
-        fontSize:15
+        fontSize:scale(12), 
     },
     second_text_row:{
         fontSize:15,
         color:'#fff'
     },
     map:{
-        width:375,
-        height:100,
+        width:scale(320),
+        height:verticalScale(100),
         marginLeft:5,
-        marginTop:50,
+        marginTop:verticalScale(35),
         marginBottom:50
     },
     backgroundModal:{
         backgroundColor: 'rgba(0, 0, 0, 0.1)',
-        height:900,
+        height:scale(730),
+        flexDirection:'column',
+        justifyContent:'space-around',
+        alignItems:'center'
     },
     Icone:{
         // marginTop:20,
-        fontSize:25,
+        fontSize:scale(25),
         color:'orange',
         fontWeight:'bold',
         marginRight:5
@@ -445,26 +455,26 @@ const styles = StyleSheet.create({
     box_icone:{
         // borderWidth:1,
         justifyContent:"center",
-        height:40,
+        height:scale(40),
         justifyContent:'center',
         alignItems:'flex-end',
         alignSelf:'flex-end',
         width:'10%'
     },
     second_images:{
-        width:70,
-        height:70,
+        width:scale(60),
+        height:scale(60),
         borderRadius:8,
-        marginRight:20
+        marginRight:scale(10)
     },
     second_box:{
         flexDirection:'row',
         width:'100%',
         borderBottomWidth:1,
-        height:100,
+        height:verticalScale(80),
         alignItems:'center',
         paddingLeft:10,
-        borderColor:'grey'
+        borderColor:'#D9D9D9'
     },
     second_details:{
         flexDirection:'row',
@@ -482,4 +492,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Panier;
+export default Home;

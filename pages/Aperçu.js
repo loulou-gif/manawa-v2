@@ -30,10 +30,10 @@ const Aperçu = ({navigation}) => {
                     </View>
                 </View>
             </View>
-            <Pressable onPress={handleVisible} style={styles.button}>
+            {/* <Pressable onPress={handleVisible} style={styles.button}>
                 <Icone name='plus'  size={20} style={{ marginTop:7, color:'#fff', margin:3}} /> 
                 <Text style={styles.btn_text}>Ajouter un Aperçu </Text>
-            </Pressable>
+            </Pressable> */}
             <Modal  animationType="fade"  transparent={true} visible={create}>
             <View style={styles.create}>
                 <View style={styles.second_box}>

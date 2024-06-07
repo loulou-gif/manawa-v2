@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native';
-// import { Modal } from 'react-native-paper';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { Modal } from 'react-native-paper';
 import IconeMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconeIonicons from 'react-native-vector-icons/Ionicons';
 import Sms from './Sms';
 import { sms } from '../data/sms'; // Assurez-vous que cette importation est correcte
+import { scale, verticalScale } from 'react-native-size-matters';
 
 const Message = ({ navigation }) => {
     const [message, setMessage] = useState(false);
@@ -16,6 +17,7 @@ const Message = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={handleVisible} style={styles.circle}>
+                <View style={styles.notif}><Text style={styles.text_notif}>1</Text></View>
                 <Text style={styles.icone}>
                     <IconeMaterialCommunityIcons name="message" size={30} />
                 </Text>
@@ -50,22 +52,23 @@ const Message = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         marginTop: -80,
+        // flex:1
     },
     circle: {
         backgroundColor: '#7A4D09',
-        width: 60,
-        height: 60,
-        borderRadius: 30,
+        width: scale(55),
+        height: verticalScale(50),
+        borderRadius: scale(30),
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 30,
-        marginLeft: 340,
+        marginLeft: scale(280),
     },
     icone: {
         color: 'white',
     },
     modal: {
-        height: 1450,
+        height: verticalScale(1200),
         backgroundColor: 'rgba(0,0,0, 0.3)',
     },
     all_conversation: {
@@ -74,7 +77,7 @@ const styles = StyleSheet.create({
     },
     header: {
         width: '100%',
-        height: 50,
+        height: verticalScale(50),
         backgroundColor: '#7A4D09',
         flexDirection: 'row',
         alignItems: 'center',
@@ -85,19 +88,34 @@ const styles = StyleSheet.create({
     },
     back_header: {
         color: 'white',
-        fontSize: 20,
+        fontSize: scale(20),
         marginLeft: 10,
         marginRight: 20,
     },
     text_header: {
         color: 'white',
-        fontSize: 20,
+        fontSize: scale(18),
     },
     noConversations: {
         textAlign: 'center',
-        fontSize: 18,
+        fontSize: scale(18),
         color: '#7A4D09',
         marginTop: 20,
+    },
+    notif:{
+        width:'40%',
+        height:'40%',
+        backgroundColor:'#DE9F42',
+        borderRadius:25,
+        alignItems:'center',
+        marginTop:'-30%',
+        marginBottom:'-10%',
+        marginLeft:'70%'
+    },
+    text_notif:{
+        color:'white',
+        fontWeight:'bold',
+        fontSize:scale(16),
     },
 });
 
